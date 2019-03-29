@@ -22,7 +22,7 @@ namespace PolteqTests
         [Fact]
         public void Test1()
         {
-            _fixture.Singletons.HomePage.ClickLogin();
+            _fixture.Singletons.Header.ClickLogin();
             _output.WriteLine("Test was run!");
             _fixture.Dispose();
         }
@@ -30,7 +30,7 @@ namespace PolteqTests
         [Fact]
         public void Test2()
         {
-            _fixture.Singletons.HomePage.ClickLogin();
+            _fixture.Singletons.Header.ClickLogin();
             _output.WriteLine("Test was run!");
             _fixture.Dispose();
         }
