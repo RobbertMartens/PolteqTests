@@ -19,5 +19,8 @@ namespace Domain
 
         private HomePage _homePage;
         public HomePage HomePage => _homePage ?? (_homePage = new HomePage(_driver));
+
+        private AuthenticationPage _authenticationPage;
+        public AuthenticationPage AuthenticationPage => _authenticationPage ?? (_authenticationPage = new AuthenticationPage(_driver));
     }
 }
