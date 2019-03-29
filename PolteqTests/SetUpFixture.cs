@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Objects;
 using Microsoft.Win32.SafeHandles;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,9 +15,12 @@ namespace PolteqTests
     {
         public IWebDriver Driver { get; private set; }
         public Singletons Singletons { get; private set; }
+        protected Credentials Credentials { get; private set; }
 
         private bool _disposed = false;
+        private readonly bool _shouldLog; 
         private readonly SafeHandle handle = new SafeFileHandle(IntPtr.Zero, true);
+        private readonly ConfigFileReader _config;
 
 
         public SetUpFixture()
@@ -27,6 +31,9 @@ namespace PolteqTests
             Driver.Navigate().GoToUrl(Uris.HomePageUrl);
 
             Singletons = Singletons.Instance(Driver);
+            _config = new ConfigFileReader();
+            Credentials = _config.GetCredentials();
+            _shouldLog = _config.GetShouldLog();
         }
 
         public void Dispose()
