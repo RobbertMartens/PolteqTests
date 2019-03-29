@@ -6,16 +6,17 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using Xunit;
 
 namespace PolteqTests
 {
     // https://xunit.github.io/docs/comparisons
 
-    public class SetUpFixture : IDisposable
+    public class TestFixture : ICollectionFixture<SuiteFixture>, IDisposable
     {
         public IWebDriver Driver { get; private set; }
         public Singletons Singletons { get; private set; }
-        protected Credentials Credentials { get; private set; }
+        public Credentials Credentials { get; private set; }
 
         private bool _disposed = false;
         private readonly bool _shouldLog; 
@@ -23,7 +24,7 @@ namespace PolteqTests
         private readonly ConfigFileReader _config;
 
 
-        public SetUpFixture()
+        public TestFixture()
         {
             Driver = new ChromeDriver(Directory.GetCurrentDirectory());
             Driver.Manage().Window.Maximize();
