@@ -1,8 +1,5 @@
 ﻿using Domain.Objects;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Pages
 {
@@ -35,11 +32,6 @@ namespace Domain.Pages
             _loginUserEmailInput.SendKeys(credentials.Username);
             _passwordInput.SendKeys(credentials.Password);
             _loginButton.Click();
-        }
-
-        public bool AuthenticationFailed()
-        {
-            return _authenticationFailedMessage.Displayed;
         }
     }
 }

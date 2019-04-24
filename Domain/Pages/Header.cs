@@ -1,7 +1,5 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Enumerations;
+using OpenQA.Selenium;
 
 namespace Domain.Pages
 {
@@ -30,9 +28,10 @@ namespace Domain.Pages
             _loginButton.Click();
         }
 
-        public bool LoggedIn()
+        public bool LoginSucceeded()
         {
-            return _logoutButton.Displayed;
+            var logoutButton = Actions.GetElement(Selector.Xpath, "//* [@class='logout']");
+            return Actions.IsElementDisplayed(logoutButton);
         }
     }
 }

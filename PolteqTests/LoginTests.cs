@@ -1,12 +1,12 @@
 using Domain;
 using Domain.Objects;
-using Domain.Pages;
 using System;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace PolteqTests
 {
+    [Collection("SingleThreading")]
     [Trait("UI tests", "Login tests")]
     public class LoginTests : IClassFixture<TestFixture>, IDisposable
     {
@@ -17,13 +17,13 @@ namespace PolteqTests
         {           
             _output = output;
             _fixture = fixture;
-            _fixture.Driver.Manage().Cookies.DeleteAllCookies();
-            _fixture.Driver.Navigate().GoToUrl(Uris.HomePageUrl);
+            _fixture.Driver.Navigate().GoToUrl(Constants.HomePageUrl);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _fixture.Driver.Manage().Cookies.DeleteAllCookies();
+            _fixture.Driver.Navigate().GoToUrl(Constants.HomePageUrl);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace PolteqTests
             _fixture.Singletons.Header.ClickLogin();
             _fixture.Singletons.AuthenticationPage.Login(_fixture.Credentials);
 
-            Assert.True(_fixture.Singletons.Header.LoggedIn(), "Login failed!");
+            Assert.True(_fixture.Singletons.Header.LoginSucceeded(), "Login failed, while it should succeed!");
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace PolteqTests
             _fixture.Singletons.AuthenticationPage.Login(credentials);
 
             // Assert
-            Assert.True(_fixture.Singletons.AuthenticationPage.AuthenticationFailed(), "'Auth failed message' was not displayed");
+            Assert.False(_fixture.Singletons.Header.LoginSucceeded(), "Login succeeded while it should have failed");
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace PolteqTests
             _fixture.Singletons.AuthenticationPage.Login(credentials);
 
             // Assert
-            Assert.True(_fixture.Singletons.AuthenticationPage.AuthenticationFailed(), "'Auth failed message' was not displayed");
+            Assert.False(_fixture.Singletons.Header.LoginSucceeded(), "'Login succeeded while it should have failed");
         }
     }
 }

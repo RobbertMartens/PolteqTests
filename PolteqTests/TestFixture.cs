@@ -1,4 +1,5 @@
 ﻿using Domain;
+using Domain.Helpers;
 using Domain.Objects;
 using Microsoft.Win32.SafeHandles;
 using OpenQA.Selenium;
@@ -26,16 +27,18 @@ namespace PolteqTests
 
         public TestFixture()
         {
-            Driver = new ChromeDriver(Directory.GetCurrentDirectory());
+            Singletons = Singletons.Instance;
+            Driver = Singletons.Driver;
+
             Driver.Manage().Window.Maximize();
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            Driver.Navigate().GoToUrl(Uris.HomePageUrl);
+            Driver.Navigate().GoToUrl(Constants.HomePageUrl);
 
-            Singletons = Singletons.Instance(Driver);
             _config = new ConfigFileReader();
             Credentials = _config.GetCredentials();
             _shouldLog = _config.GetShouldLog();
         }
+
 
         public void Dispose()
         {
