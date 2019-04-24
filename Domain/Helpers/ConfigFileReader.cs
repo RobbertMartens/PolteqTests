@@ -1,10 +1,8 @@
 ﻿using Domain.Objects;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
-namespace Domain
+namespace Domain.Helpers
 {
     public class ConfigFileReader
     {
