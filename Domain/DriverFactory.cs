@@ -11,7 +11,7 @@ namespace Domain
         public IWebDriver GetDriver()
         {
             var dir = Directory.GetCurrentDirectory().Split("PolteqTests")[0] + "PolteqTests";
-            return _driver ?? (new ChromeDriver(dir));
+            return _driver ?? (_driver = new ChromeDriver(dir));
         }
     }
 }

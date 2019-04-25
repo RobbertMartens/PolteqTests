@@ -35,8 +35,7 @@ namespace PolteqTests
 
             // Act
             _fixture.Singletons.HomePage.SelectRandomProduct();
-            selectedProduct = _fixture.Singletons.ProductInformationPage.GetProductInformation();
-            _fixture.Singletons.ProductInformationPage.AddToCart();
+            selectedProduct = _fixture.Singletons.ProductInformationPage.AddToCart();
             _fixture.Singletons.ProductAddedModal.GoToCheckOut();
             _fixture.Singletons.SummaryPage.GoToAuthenticationOrAddressPage();
             _fixture.Singletons.AuthenticationPage.Login(_fixture.Credentials);
@@ -59,8 +58,7 @@ namespace PolteqTests
 
             // Act
             _fixture.Singletons.HomePage.SelectRandomProduct();
-            selectedProduct = _fixture.Singletons.ProductInformationPage.GetProductInformation();
-            _fixture.Singletons.ProductInformationPage.AddToCart();
+            selectedProduct = _fixture.Singletons.ProductInformationPage.AddToCart();
             _fixture.Singletons.ProductAddedModal.GoToCheckOut();
             _fixture.Singletons.SummaryPage.GoToAuthenticationOrAddressPage();
             _fixture.Singletons.AuthenticationPage.Login(_fixture.Credentials);
