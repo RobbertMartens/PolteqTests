@@ -6,7 +6,17 @@ namespace PolteqTests
     {
         public void Dispose()
         {
-            Console.WriteLine("Dispose in SuiteFixture is run");
+            Console.WriteLine("Dispose in SuiteFixture is run");           
+        }
+
+        public SuiteFixture()
+        {
+            Console.WriteLine("Suite fixture is constructed!");
+        }
+
+        ~SuiteFixture()
+        {
+            Console.WriteLine("Destructor is run!");
         }
     }
 }

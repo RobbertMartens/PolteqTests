@@ -1,4 +1,4 @@
-﻿using Domain.Enumerations;
+﻿using Domain.Interfaces;
 using OpenQA.Selenium;
 
 namespace Domain.Pages
@@ -20,18 +20,25 @@ namespace Domain.Pages
         private IWebElement _searchButton => Driver.FindElement(By.XPath("//* [@name='submit_search']"));
 
 
-        public Header(IWebDriver driver) : base (driver) {}
+        public Header(IDriver driver) : base (driver) {}
 
 
         public void ClickLogin()
         {
-            _loginButton.Click();
+            Driver.Click(_loginButton);
         }
 
         public bool LoginSucceeded()
         {
-            var logoutButton = Actions.GetElement(Selector.Xpath, "//* [@class='logout']");
-            return Actions.IsElementDisplayed(logoutButton);
+            try
+            {
+                var logoutButton = Driver.FindElement(By.XPath("//* [@class='logout']"));
+                return logoutButton.Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
         }
     }
 }

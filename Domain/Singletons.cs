@@ -1,4 +1,5 @@
-﻿using Domain.Pages;
+﻿using Domain.Interfaces;
+using Domain.Pages;
 using Domain.Pages.OrderPages;
 using Domain.Pages.ProductPages;
 using OpenQA.Selenium;
@@ -7,14 +8,14 @@ namespace Domain
 {
     public sealed class Singletons
     {
-        private IWebDriver _driver;
+        private IDriver _driver;
         private Singletons() { }
 
         private static Singletons _instance;
         public static Singletons Instance => _instance ?? (_instance = new Singletons());
 
         private DriverFactory _driverFactory;
-        public IWebDriver Driver => _driver ?? (_driver = new DriverFactory().GetDriver());
+        public IDriver Driver => _driver ?? (_driver = new DriverFactory().GetDriver());
 
         // General Pages
         private Header _header;

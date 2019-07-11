@@ -10,8 +10,8 @@ namespace PolteqTests
     [Trait("UI tests", "Login tests")]
     public class LoginTests : IClassFixture<TestFixture>, IDisposable
     {
-        private readonly ITestOutputHelper _output;
         protected readonly TestFixture _fixture;
+        private readonly ITestOutputHelper _output;
 
         public LoginTests(ITestOutputHelper output, TestFixture fixture)
         {           

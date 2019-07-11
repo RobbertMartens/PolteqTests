@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Domain.Interfaces;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.IO;
 
@@ -6,12 +7,12 @@ namespace Domain
 {
     public class DriverFactory
     {
-        private IWebDriver _driver;
+        private IDriver _driver;
 
-        public IWebDriver GetDriver()
+        public IDriver GetDriver()
         {
             var dir = Directory.GetCurrentDirectory().Split("PolteqTests")[0] + "PolteqTests";
-            return _driver ?? (_driver = new ChromeDriver(dir));
+            return _driver ?? (_driver = new Driver(dir));
         }
     }
 }

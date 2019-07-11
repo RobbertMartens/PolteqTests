@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Domain.Extensions;
+using Domain.Interfaces;
+using OpenQA.Selenium;
 
 namespace Domain.Pages.OrderPages
 {
@@ -7,12 +9,12 @@ namespace Domain.Pages.OrderPages
         private IWebElement _proceedToCheckOutButton => Driver.FindElement(By.XPath("//* [@class='button btn btn-default standard-checkout button-medium']"));
 
 
-        public SummaryPage(IWebDriver driver) : base(driver) { }
+        public SummaryPage(IDriver driver) : base(driver) { }
 
 
         public void GoToAuthenticationOrAddressPage()
         {
-            _proceedToCheckOutButton.Click();
+            Driver.Click(_proceedToCheckOutButton);
         }
     }
 }

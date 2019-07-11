@@ -1,11 +1,10 @@
 ﻿using Domain;
 using Domain.Helpers;
+using Domain.Interfaces;
 using Domain.Objects;
 using Microsoft.Win32.SafeHandles;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System;
-using System.IO;
 using System.Runtime.InteropServices;
 using Xunit;
 
@@ -15,7 +14,7 @@ namespace PolteqTests
 
     public class TestFixture : ICollectionFixture<SuiteFixture>, IDisposable
     {
-        public IWebDriver Driver { get; private set; }
+        public IDriver Driver { get; private set; }
         public Singletons Singletons { get; private set; }
         public Credentials Credentials { get; private set; }
 
@@ -31,7 +30,6 @@ namespace PolteqTests
             Driver = Singletons.Driver;
 
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             Driver.Navigate().GoToUrl(Constants.HomePageUrl);
 
             _config = new ConfigFileReader();

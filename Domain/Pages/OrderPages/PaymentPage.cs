@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Domain.Extensions;
+using Domain.Interfaces;
+using OpenQA.Selenium;
 
 namespace Domain.Pages.OrderPages
 {
@@ -8,17 +10,17 @@ namespace Domain.Pages.OrderPages
         private IWebElement _chequePaymentButton => Driver.FindElement(By.XPath("//* [@class='cheque']"));
 
 
-        public PaymentPage(IWebDriver driver) : base(driver) { }
+        public PaymentPage(IDriver driver) : base(driver) { }
 
         
         public void PayWithBankWire()
         {
-            _bankWirePaymentButton.Click();
+            Driver.Click(_bankWirePaymentButton);
         }
 
         public void PayWithCheque()
         {
-            _chequePaymentButton.Click();
+            Driver.Click(_chequePaymentButton);
         }
     }
 }

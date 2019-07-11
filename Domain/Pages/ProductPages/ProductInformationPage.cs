@@ -1,4 +1,5 @@
 ﻿using Domain.Extensions;
+using Domain.Interfaces;
 using Domain.Objects;
 using OpenQA.Selenium;
 
@@ -12,7 +13,7 @@ namespace Domain.Pages.ProductPages
         private IWebElement _productNotInStockModal => Driver.FindElement(By.XPath("//* [@title='Close']"));
 
 
-        public ProductInformationPage(IWebDriver driver) : base(driver) { }
+        public ProductInformationPage(IDriver driver) : base(driver) { }
 
 
         public Product AddToCart()
@@ -20,13 +21,13 @@ namespace Domain.Pages.ProductPages
             if (_addToCartButton.Displayed)
             {
                 var product = GetProductInformation();
-                _addToCartButton.Click();
+                Driver.Click(_addToCartButton);
                 return product;
             }
             else
             {
                 var altProdcut = Driver.FindElement(By.XPath("//* [@class='replace-2x img-responsive']"));
-                altProdcut.Click();
+                Driver.Click(altProdcut);
                 var product = GetProductInformation();
                 return product;
             }

@@ -1,4 +1,6 @@
-﻿using Domain.Objects;
+﻿using Domain.Extensions;
+using Domain.Interfaces;
+using Domain.Objects;
 using OpenQA.Selenium;
 
 namespace Domain.Pages
@@ -18,20 +20,20 @@ namespace Domain.Pages
         private IWebElement _authenticationFailedMessage => Driver.FindElement(By.XPath("//* [contains(text(), 'Authentication failed')]"));
 
 
-        public AuthenticationPage(IWebDriver driver) : base(driver) { }
+        public AuthenticationPage(IDriver driver) : base(driver) { }
 
 
         public void CreateUser(string email)
         {
             _createUserEmailInput.SendKeys(email);
-            _createSubmitButton.Click();
+            Driver.Click(_createSubmitButton);
         }
 
         public void Login(Credentials credentials)
         {
             _loginUserEmailInput.SendKeys(credentials.Username);
             _passwordInput.SendKeys(credentials.Password);
-            _loginButton.Click();
+            Driver.Click(_loginButton);
         }
     }
 }

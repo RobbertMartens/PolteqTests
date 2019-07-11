@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Domain.Extensions;
+using Domain.Interfaces;
+using OpenQA.Selenium;
 
 namespace Domain.Pages.OrderPages
 {
@@ -7,12 +9,12 @@ namespace Domain.Pages.OrderPages
         private IWebElement _confirmOrderButton => Driver.FindElement(By.XPath("//* [@class='button btn btn-default button-medium']"));
 
 
-        public SubmitOrderPage(IWebDriver driver) : base(driver) { }
+        public SubmitOrderPage(IDriver driver) : base(driver) { }
 
 
         public void ConfirmOrder()
         {
-            _confirmOrderButton.Click();
+            Driver.Click(_confirmOrderButton);
         }
     }
 }

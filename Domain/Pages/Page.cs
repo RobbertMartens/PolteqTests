@@ -1,17 +1,15 @@
 ﻿using Domain.Helpers;
-using OpenQA.Selenium;
+using Domain.Interfaces;
 
 namespace Domain.Pages
 {
     public class Page
     {
-        protected IWebDriver Driver { get; private set; }
-        protected ElementActions Actions { get; private set; }
+        protected IDriver Driver { get; private set; }
 
-        public Page(IWebDriver driver)
+        public Page(IDriver driver)
         {
             Driver = driver;
-            Actions = new ElementActions(Driver);
         }
     }
 }

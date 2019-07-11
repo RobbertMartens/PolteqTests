@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Domain.Extensions;
+using Domain.Interfaces;
+using OpenQA.Selenium;
 
 namespace Domain.Pages.OrderPages
 {
@@ -8,14 +10,13 @@ namespace Domain.Pages.OrderPages
         private IWebElement _acceptTermsCheckBox => Driver.FindElement(By.Id("uniform-cgv"));
 
 
-        public ShippingPage(IWebDriver driver) : base(driver) { }
+        public ShippingPage(IDriver driver) : base(driver) { }
 
 
         public void GoToPaymentPage()
         {
-            _acceptTermsCheckBox.Click();
-            Actions.ScrollToElement(_proceedToCheckOutButton);
-            _proceedToCheckOutButton.Click();
+            Driver.Click(_acceptTermsCheckBox);
+            Driver.Click(_proceedToCheckOutButton);
         }
     }
 }

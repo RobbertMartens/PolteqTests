@@ -1,4 +1,5 @@
 ﻿using Domain.Extensions;
+using Domain.Interfaces;
 using OpenQA.Selenium;
 
 namespace Domain.Pages.OrderPages
@@ -9,12 +10,12 @@ namespace Domain.Pages.OrderPages
         private IWebElement _priceText => Driver.FindElement(By.XPath("//* [@class='price']/strong"));
 
 
-        public ConfirmationPage(IWebDriver driver) : base(driver) { }
+        public ConfirmationPage(IDriver driver) : base(driver) { }
 
 
         public bool IsPurchaseSuccesful()
         {
-            return Actions.IsElementDisplayed(_succesAlert);
+            return _succesAlert.IsElementDisplayed();
         }
 
         public double GetPaidAmount()
